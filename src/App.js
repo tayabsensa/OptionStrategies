@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
-function App() {
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Sidebar from "./Components/SideBar";
+import StrategyDetailPage from "./pages/StrategyDetailPage";
+import data from "./Components/data";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="main-container">
+        <Sidebar data={data} />
+        <div className="main-content">
+          <Routes>
+            {data.map((item) => (
+              <Route
+                key={item.id}
+                path={`/${item.id}`}
+                element={<StrategyDetailPage item={item} />}
+              />
+            ))}
+            <Route
+              path="/"
+              element={<div>Select a strategy from the sidebar.</div>}
+            />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
