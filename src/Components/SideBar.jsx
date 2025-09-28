@@ -13,6 +13,7 @@ const Sidebar = ({ data }) => {
             </Link>
           </li>
         ))}
+        <h1>HHIHIHI HUHIHIH</h1>
       </ul>
     </div>
   );
